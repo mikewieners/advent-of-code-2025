@@ -1,0 +1,17 @@
+{
+  "name": "01-1-SecretEntrance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "decoder.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "cheerio": "^1.1.2",
+    "stream": "^0.0.3"
+  }
+}
