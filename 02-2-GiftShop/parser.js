@@ -9,21 +9,38 @@ function findAndSumInvalidProducts(range) {
 
     for (let i = start; i <= end; i++){
         idString = i.toString();
-        if (idString.length % 2 === 1){
-            continue;
-        }
 
-        let halfLength = idString.length / 2;
-        let firstHalf = idString.substring(0,halfLength)
-        let secondHalf = idString.substring(halfLength);
-        if (firstHalf === secondHalf ){
-            checkSum += i;
-            // console.log(`For product ${i}, the ID is invalid with ${firstHalf} equal to ${secondHalf}.`);
-            // console.log(`The checksum total is now ${checkSum}.`)
-            continue;
+        let maxDivisor = idString.length / 2;
+        for (let j = 1; j <= maxDivisor; j++){
+            if (idString.length % j !== 0){
+                continue;
+            }
+
+            let splits = [];
+            splits = getSplitsArray(idString, j);
+            if (!isValid(splits, j)) {
+                checkSum += i;
+                break;
+            }
         }
-        // console.log(`Product ID ${i} is valid.`)
     }
+}
+
+function getSplitsArray(targetString, chunkSize){
+    let chunks = [];
+    for (let i = 0; i < targetString.length; i += chunkSize){
+        chunks.push(targetString.substring(i, i+chunkSize));
+    }
+    return chunks;
+}
+
+function isValid(splitsArray){
+    for (let i = 1; i < splitsArray.length; i++){
+        if (splitsArray[0] !== splitsArray[i]){
+            return true;
+        }
+    }
+    return false;
 }
 
 function processIDs(rangesToCheck) {
