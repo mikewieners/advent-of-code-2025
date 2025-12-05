@@ -43,10 +43,10 @@ function countOfAdjacentRollsInNextRow(currentRowIndex, currentPositionIndex) {
 
 function findMovableRolls() {
     let currentLayout = input;
-    console.log('Initial State:')
-    currentLayout.forEach(r => {
-        console.log(r);
-    });
+    // console.log('Initial State:')
+    // currentLayout.forEach(r => {
+    //     console.log(r);
+    // });
     let rollsMovedOnThisPass = 0;
     do {
         rollsMovedOnThisPass = 0;
@@ -76,17 +76,17 @@ function findMovableRolls() {
         }
         movedRollsCount += rollsMovedOnThisPass;
         movedRolls = currentLayout;
-        console.log(`This pass removed ${rollsMovedOnThisPass} as illustrated:`)
+        // console.log(`This pass removed ${rollsMovedOnThisPass} as illustrated:`)
         for (r = 0; r < movedRolls.length; r++) {
             let thisRowText = movedRolls[r];
-            console.log(thisRowText);
-            movedRolls[r] = thisRowText.replace('X', '.');
+            // console.log(thisRowText);
+            movedRolls[r] = thisRowText.replaceAll('X', '.');
         }
 
-        console.log(`This leaves the current state as:`)
+        // console.log(`This leaves the current state as:`)
         for (r = 0; r < movedRolls.length; r++) {
             let thisRowText = movedRolls[r];
-            console.log(thisRowText);
+            // console.log(thisRowText);
         }
     } while (rollsMovedOnThisPass > 0);
     console.log(`A total of ${movedRollsCount} rolls were moved`)
