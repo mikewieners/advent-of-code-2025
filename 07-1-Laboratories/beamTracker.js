@@ -1,9 +1,11 @@
 
-import { manifold } from './testData.js';
+// import { manifold } from './testData.js';
+const manifold = require('./testData.js');
 
 let manifoldDiagramResult = [manifold[0]];
 let rowLength = manifold[0].length;
 let splitCount = 0;
+let pathCount = 0;
 
 let beamStartIndex = manifold[0].indexOf('S');
 let lastRowBeamIndices = [beamStartIndex];
@@ -51,6 +53,7 @@ function findTheSplits() {
             lastRowBeamIndices.push(i);
         });
         manifoldDiagramResult.push(thisRowResult);
+        pathCount += new Set(newBeamLocations).size;
     }
     manifoldDiagramResult.forEach(l => {
         let logString = '';
@@ -60,6 +63,8 @@ function findTheSplits() {
         console.log(logString);
     });
     console.log(`Total splits: ${splitCount}`)
+    //The first pass ended up with 3,079 paths which is too low
+    console.log(`Total paths: ${pathCount}`)
 }
 
 findTheSplits();
